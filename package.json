@@ -1,7 +1,7 @@
 {
   "name": "sails-js-scaffold",
   "version": "0.0.1",
-  "description": "",
+  "description": "An alternative Sails.js framework Grunt scaffold which substitutes LESS for SASS, script concatenation for Browserify, sets up a basic grunt-mocha task as well as provides a number of commonly used front-end libraries",
 
   "dependencies": {
       "sails": "0.9.7",
@@ -41,5 +41,11 @@
     "grunt-node-inspector": "~0.1.1",
     "grunt-contrib-watch": "~0.5.3"
   },
-  "readmeFilename": "README.md"
+
+  "readmeFilename": "README.md",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damassi/sails-js-scaffold"
+  }
 }
