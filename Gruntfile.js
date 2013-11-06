@@ -183,11 +183,19 @@ module.exports = function( grunt ) {
     'nodemon': {
       dev: {
         options: {
-          file: '<%= sources %>/scripts/index.coffee',
-          args: ['production'],
-          //nodeArgs: ['--debug'],
-          ignoredFiles: ['README.md', 'node_modules/**'],
-          watchedExtensions: ['js', 'coffee'],
+          file: '<%= sources %>/scripts/app.js',
+          ignoredFiles: [
+            'README.md',
+            'node_modules/*',
+            'assets/*',
+            'views/*',
+            '/.tmp/*',
+            '/.git/*',
+            '/.tmp/*',
+            '/.sass-cache/*',
+            '/.tmpassets/*'
+          ],
+          watchedExtensions: ['js'],
           delayTime: .5,
           env: {
             PORT: '3000'

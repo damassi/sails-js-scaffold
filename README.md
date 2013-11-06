@@ -9,7 +9,9 @@ Installation
 - Initialize a new Sails app by running `sails new <app>`
 - Clone `https://github.com/damassi/sails-js-scaffold.git` into the newly created app folder, overwriting the existing package.json and GruntFile.js.
 - Install dependencies:  `npm install`
-- Start app:  `sails lift`
+- Start app:  `grunt concurrent`
+
+(Note:  grunt concurrent is used instead of `sails lift` due to the need to both restart the server on changes as well as watch for file changes on the frontend)
 
 
 Configuring Scaffold
