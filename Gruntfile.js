@@ -121,33 +121,12 @@ module.exports = function( grunt ) {
 
     'copy': {
 
-      // assets: {
-      //   files: [{
-      //     expand: true,
-      //     cwd: '<%= frontend %>/',
-      //     src: [
-      //       '**',
-      //       '!tests/**',
-      //       '!javascripts/**',
-      //       '!styles/**',
-      //       '!test/**',
-      //       '!vendor/**'
-      //     ],
-      //     dest: '<%= output %>/assets/'
-      //   }]
-      // },
-
       images: {
         files: [{
           expand: true,
-          cwd: '<%= frontend %>/',
+          cwd: '<%= frontend %>/images/',
           src: [
-            'images/**',
-            // '!tests/**',
-            // '!javascripts/**',
-            // '!styles/**',
-            // '!test/**',
-            // '!vendor/**'
+            '**',
           ],
           dest: '<%= output %>/assets/images/'
         }]
