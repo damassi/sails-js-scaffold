@@ -15,12 +15,12 @@ Installation
 Configuring Scaffold
 --------------------
 
-Currently the Sails framework requires that three tasks be included by default:  `linkAssets`, `build` and `prod`.  While `linkAssets` no longer needs to be used as the default `sails-linker` npm module has been removed, `build` and `prod` still need to be configured depending upon your desired build and production needs.  I've left these intentionally blank.  Additionally, if certain vendor libraries are not needed you can remove them from the `concat:vendor` task located at the top of the grunt-file.
+Currently the Sails framework requires that three Grunt tasks tasks be included by default:  `linkAssets`, `build` and `prod`.  While `linkAssets` no longer needs to be used as the default `sails-linker` npm module has been removed, `build` and `prod` still need to be configured depending upon your desired build and production needs.  I've left these intentionally blank.  Additionally, if certain vendor libraries are not needed you can remove them from the `concat:vendor` task located at the top of the grunt-file.
 
 
 Configuring Base Views
 ----------------------
 
-In `views/layout.ejs` the base, default view used to render Sails.js pages can be modified to fit your needs.  If the paths to your application source needs to be changed, then the base-paths located at the top of GruntFile.js need to be changed accordingly.
+In `views/layout.ejs` the base, default view used to render Sails.js pages can be modified to fit your needs.  If the paths to your application sources needs to be changed, then the base-paths located at the top of GruntFile.js need to be changed accordingly.
 
 
