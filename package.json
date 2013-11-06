@@ -1,23 +1,19 @@
 {
   "name": "sails-js-scaffold",
   "version": "0.0.1",
-  "description": "An alternative Sails.js framework Grunt scaffold which substitutes LESS for SASS, script concatenation for Browserify, sets up a basic grunt-mocha task as well as provides a number of commonly used front-end libraries",
-
+  "description": "",
   "dependencies": {
-      "sails": "0.9.7",
-      "grunt": "0.4.1",
-      "sails-disk": "~0.9.0",
-      "ejs": "0.8.4",
-      "optimist": "0.3.4"
+    "sails": "0.9.7",
+    "grunt": "0.4.1",
+    "sails-disk": "~0.9.0",
+    "ejs": "0.8.4",
+    "optimist": "0.3.4"
   },
-
   "scripts": {
-      "start": "node app.js",
-      "debug": "node debug app.js"
+    "start": "node app.js",
+    "debug": "node debug app.js"
   },
-
   "main": "app.js",
-
   "devDependencies": {
     "grunt": "~0.4.1",
     "coffee-script": "~1.6.3",
@@ -36,16 +32,24 @@
     "coffee-script-mapped": "~0.1.5",
     "grunt-coffeelint": "0.0.7",
     "grunt-nodemon": "~0.1.1",
+    "grunt-regarde": "~0.1.1",
     "load-grunt-tasks": "~0.2.0",
     "grunt-concurrent": "~0.4.1",
     "grunt-node-inspector": "~0.1.1",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-browserify2": "~0.1.8",
+    "uglify-js": "~2.4.2",
+    "handleify": "~0.1.2"
   },
-
-  "readmeFilename": "README.md",
-
   "repository": {
     "type": "git",
-    "url": "https://github.com/damassi/sails-js-scaffold"
-  }
+    "url": "https://github.com/damassi/sails-js-scaffold.git"
+  },
+  "contributors": [
+    {
+      "name": "Christopher Pappas",
+      "email": "damassi.pappas@gmail.com"
+    }
+  ],
+  "readmeFilename": "README.md"
 }

@@ -12,19 +12,62 @@
 
 module.exports = function( grunt ) {
 
+  var handleify = require('handleify');
+  var uglify    = require("uglify-js");
+
+
   grunt.initConfig({
+
 
     // + ---------------------------------------------
 
 
     basePath : '.',
-    sources  : '<%= basePath %>/',
+    sources  : '<%= basePath %>',
+    frontend : '<%= basePath %>/frontend',
     output   : '<%= basePath %>/.tmp/public',
     dist     : '<%= basePath %>/www',
     port     : 3001,
 
 
     // + ---------------------------------------
+
+
+    //
+    // Compile JavaScript using browserify
+    //
+
+    'browserify2': {
+
+      compile: {
+        entry: [ '<%= frontend %>/javascripts/initialize.js'],
+        compile: '<%= output %>/assets/javascripts/app.js',
+
+        // Precompile Handlebars templates
+        beforeHook: function( bundle ) {
+          bundle.transform( handleify )
+        },
+
+        debug: true
+      },
+
+      dist: {
+        entry: [ '<%= frontend %>/javascripts/initialize.js'],
+        compile: '<%= output %>/assets/javascripts/app.js',
+        debug: false,
+
+        // Precompile Handlebars templates
+        beforeHook: function( bundle ) {
+          bundle.transform( handleify )
+        },
+
+        // Minify sources
+        afterHook: function(src){
+          var result = uglify.minify(src, {fromString: true});
+          return result.code;
+        }
+      }
+    },
 
 
     //
@@ -39,20 +82,20 @@ module.exports = function( grunt ) {
 
       vendor: {
         src: [
-          '<%= sources %>/vendor/scripts/jquery-2.0.3.js',
-          '<%= sources %>/vendor/scripts/jquery.mobile.custom.min.js',
-          '<%= sources %>/vendor/scripts/modernizr-2.6.2.min.js',
-          '<%= sources %>/vendor/scripts/gumby.min.js',
-          '<%= sources %>/vendor/scripts/lodash.js',
-          '<%= sources %>/vendor/scripts/backbone.js',
-          '<%= sources %>/vendor/scripts/backbone.mods.js',
-          '<%= sources %>/vendor/scripts/greensock/TweenMax.js',
-          '<%= sources %>/vendor/scripts/greensock/easing/EasePack.js',
-          '<%= sources %>/vendor/scripts/greensock/utils/Draggable.js',
-          '<%= sources %>/vendor/scripts/greensock/plugins/CSSPlugin.js',
-          '<%= sources %>/vendor/scripts/greensock/plugins/RoundPropsPlugin.js',
-          '<%= sources %>/vendor/scripts/greensock/plugins/GreenProp.js',
-          '<%= sources %>/vendor/scripts/greensock/plugins/ThrowPropsPlugin.min.js',
+          '<%= frontend %>/vendor/scripts/jquery-2.0.3.js',
+          '<%= frontend %>/vendor/scripts/jquery.mobile.custom.min.js',
+          '<%= frontend %>/vendor/scripts/modernizr-2.6.2.min.js',
+          '<%= frontend %>/vendor/scripts/gumby.min.js',
+          '<%= frontend %>/vendor/scripts/lodash.js',
+          '<%= frontend %>/vendor/scripts/backbone.js',
+          '<%= frontend %>/vendor/scripts/backbone.mods.js',
+          '<%= frontend %>/vendor/scripts/greensock/TweenMax.js',
+          '<%= frontend %>/vendor/scripts/greensock/easing/EasePack.js',
+          '<%= frontend %>/vendor/scripts/greensock/utils/Draggable.js',
+          '<%= frontend %>/vendor/scripts/greensock/plugins/CSSPlugin.js',
+          '<%= frontend %>/vendor/scripts/greensock/plugins/RoundPropsPlugin.js',
+          '<%= frontend %>/vendor/scripts/greensock/plugins/GreenProp.js',
+          '<%= frontend %>/vendor/scripts/greensock/plugins/ThrowPropsPlugin.min.js',
         ],
 
         dest: '<%= output %>/assets/javascripts/vendor.js'
@@ -63,7 +106,7 @@ module.exports = function( grunt ) {
 
     'concurrent': {
       dev: {
-        tasks: ['nodemon', 'watch'],
+        tasks: ['nodemon', 'default'],
         options: {
           logConcurrentOutput: true
         }
@@ -78,19 +121,42 @@ module.exports = function( grunt ) {
 
     'copy': {
 
-      assets: {
+      // assets: {
+      //   files: [{
+      //     expand: true,
+      //     cwd: '<%= frontend %>/',
+      //     src: [
+      //       '**',
+      //       '!tests/**',
+      //       '!javascripts/**',
+      //       '!styles/**',
+      //       '!test/**',
+      //       '!vendor/**'
+      //     ],
+      //     dest: '<%= output %>/assets/'
+      //   }]
+      // },
+
+      images: {
         files: [{
           expand: true,
-          cwd: '<%= sources %>/assets/',
-          src: ['**'],
-          dest: '<%= output %>/assets/'
+          cwd: '<%= frontend %>/',
+          src: [
+            'images/**',
+            // '!tests/**',
+            // '!javascripts/**',
+            // '!styles/**',
+            // '!test/**',
+            // '!vendor/**'
+          ],
+          dest: '<%= output %>/assets/images/'
         }]
       },
 
       sails: {
         files: [{
           expand: true,
-          cwd: '<%= sources %>/vendor/scripts/sails',
+          cwd: '<%= frontend %>/vendor/scripts/sails',
           src: ['**'],
           dest: '<%= output %>/assets/javascripts/'
         }]
@@ -100,7 +166,7 @@ module.exports = function( grunt ) {
         files: [
           {
             expand: true,
-            cwd: '<%= sources %>/html/',
+            cwd: '<%= frontend %>/html/',
             src: ['**'],
             dest: '<%= output %>'
           }
@@ -183,7 +249,9 @@ module.exports = function( grunt ) {
     'nodemon': {
       dev: {
         options: {
-          file: '<%= sources %>/scripts/app.js',
+          file: '<%= sources %>/app.js',
+          //args: ['production'],
+          //nodeArgs: ['--debug'],
           ignoredFiles: [
             'README.md',
             'node_modules/*',
@@ -234,10 +302,24 @@ module.exports = function( grunt ) {
 
         files: [{
           src: [
-            '<%= sources %>/vendor/styles/gumby/sass/gumby.scss',
-            '<%= sources %>/styles/app.sass'
+            '<%= frontend %>/styles/app.scss'
           ],
           dest: '<%= output %>/assets/styles/app.css'
+        }]
+      },
+
+      vendor: {
+        options: {
+          compass: true,
+          style: "expanded",
+          debugInfo: false
+        },
+
+        files: [{
+          src: [
+            '<%= frontend %>/vendor/styles/gumby/sass/gumby.scss'
+          ],
+          dest: '<%= output %>/assets/styles/vendor.css'
         }]
       },
 
@@ -281,7 +363,8 @@ module.exports = function( grunt ) {
 
     'watch': {
       options: {
-        livereload: '<%= port %>'
+        livereload: '<%= port %>',
+        spawn: false
       },
 
       tests: {
@@ -289,23 +372,18 @@ module.exports = function( grunt ) {
         tasks: [ 'simplemocha' ]
       },
 
-      assets: {
-        files: '<%= sources %>/assets/**/*.*',
-        tasks: ['copy:assets']
-      },
-
-      html: {
-        files: '<%= sources %>/html/**',
-        tasks: ['copy:html']
+      images: {
+        files: '<%= frontend %>/images/**',
+        tasks: ['copy:images']
       },
 
       styles: {
-        files: '<%= sources %>/styles/**/*.*',
+        files: '<%= frontend %>/styles/**/*',
         tasks: ['sass:compile']
       },
 
       vendor: {
-        files: '<%= sources %>/vendor/**/*.js',
+        files: '<%= frontend %>/vendor/**/*.js',
         tasks: ['concat:vendor']
       }
     },
@@ -330,19 +408,27 @@ module.exports = function( grunt ) {
   // + ---------------------------------------
 
 
+  grunt.registerTask( 'default', [
+    'compileAssets',
+    'dev'
+  ])
+
   grunt.registerTask( 'compileAssets', [
     'clean:output',
-    'copy:assets',
+    'copy:images',
     'copy:sails',
     'copy:html',
+    'browserify2:compile',
     'sass:compile',
-    'concat:vendor',
-    //'concurrent'
+    'sass:vendor',
+    'concat:vendor'
   ])
 
   grunt.registerTask( 'dev', [
     //'coffeelint',
     //'tests',
+    //'nodemon',
+    //'concurrent'
     'watch'
   ])
 
@@ -350,14 +436,9 @@ module.exports = function( grunt ) {
     'simplemocha'
   ])
 
-  grunt.registerTask( 'default', [
-    'compileAssets',
-    'dev'
-  ])
-
-  grunt.registerTask( 'linkAssets', [])
-  grunt.registerTask( 'build', [])
-  grunt.registerTask( 'prod', [])
+  //grunt.registerTask( 'linkAssets', [])
+  //grunt.registerTask( 'build', [])
+  //grunt.registerTask( 'prod', [])
 
 
   // + ---------------------------------------

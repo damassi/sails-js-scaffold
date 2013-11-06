@@ -11,47 +11,26 @@
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <!--
-
-      Stylesheets
-      ========================
-
-      You can link any CSS, LESS, or image files in your `assets` directory
-      as you would normally: using <link/> tags.
-
-    -->
-
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/styles/vendor.css" />
     <link rel="stylesheet" href="assets/styles/app.css" />
 
     <!-- Scripts -->
     <script src="assets/javascripts/vendor.js"></script>
     <script src="assets/javascripts/app.js"></script>
 
-    <!--
-
-      Support for LESS included by default
-      ================================================
-
-      LESS files are automatically compiled when they change using the Gruntfile
-      located in the top-level of this Sails app.  If you run into issues with styles
-      not reloading, check the Sails log output in your console for LESS compilation errors.
-      If necessary, shut down and then lift your app again.
-
-    -->
-
   </head>
 
   <body>
 
-    <!-- Include the view file for the current controller/route -->
-    <%- body %>
+    <div id='container-content'>
+        <!-- Include the view file for the current controller/route -->
+        <%- body %>
+    </div>
 
 
     <script type="text/javascript" src="assets/javascripts/socket.io.js"></script>
-    <!-- then beef it up with some convenience logic for talking to Sails.js -->
     <script type="text/javascript" src="assets/javascripts/sails.io.js"></script>
-    <!-- listen on socket.io for incoming messages -->
     <script type="text/javascript" src="assets/javascripts/socket-ex.js"></script>
 
     </body>
