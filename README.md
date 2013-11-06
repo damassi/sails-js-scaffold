@@ -1,7 +1,7 @@
 Sails.js Grunt Scaffold
 =======================
 
-An alternative Sails.js framework Grunt scaffold which substitutes LESS for SASS, script concatenation for Browserify, sets up a basic grunt-mocha task as well as provides a number of commonly used front-end libraries located in `vendor` --the Gumby SASS framework, jQuery, Backbone, lodash, GreenSock, and Modernizer.
+An alternative [Sails.js](http://sailsjs.org/) Grunt scaffold which substitutes LESS for [SASS](http://sass-lang.com/), script concatenation for [Browserify](http://browserify.org/), sets up a basic grunt-mocha task for [Mocha](http://visionmedia.github.io/mocha/) tests as well as provides a number of commonly used front-end libraries located in `vendor` --the [Gumby SASS framework](http://gumbyframework.com/), [jQuery](http://jquery.com/), [Backbone](http://backbonejs.org/), [Lo-dash](http://lodash.com/), [GreenSock Animation Platform](http://www.greensock.com/), and [Modernizer](http://modernizr.com/).
 
 Installation
 -------------
