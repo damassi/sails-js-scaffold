@@ -24,7 +24,7 @@ module.exports = function( grunt ) {
 
     basePath : '.',
     sources  : '<%= basePath %>',
-    frontend : '<%= basePath %>/frontend',
+    frontend : '<%= basePath %>/client-side',
     output   : '<%= basePath %>/.tmp/public',
     dist     : '<%= basePath %>/www',
     port     : 3001,
