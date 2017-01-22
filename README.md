@@ -1,7 +1,7 @@
 Sails.js Grunt Scaffold
 =======================
 
-An alternative [Sails.js](http://sailsjs.org/) Grunt scaffold which enables live-reload for both the server and the client (via Nodemon and contrib-watch), substitutes LESS for [SASS](http://sass-lang.com/), script concatenation for [Browserify](http://browserify.org/), sets up a basic grunt-mocha task for [Mocha](http://visionmedia.github.io/mocha/) tests as well as provides a number of commonly used front-end libraries located in `vendor` --the [Gumby SASS framework](http://gumbyframework.com/), [jQuery](http://jquery.com/), [Backbone](http://backbonejs.org/), [Lo-dash](http://lodash.com/), [GreenSock Animation Platform](http://www.greensock.com/), and [Modernizer](http://modernizr.com/).
+An alternative [Sails.js](http://sailsjs.org/) Grunt scaffold which enables live-reload for both the server and the client (via Nodemon and contrib-watch), substitutes LESS for [SASS](http://sass-lang.com/), script concatenation for [Browserify](http://browserify.org/), sets up a basic grunt-mocha task for [Mocha](http://mochajs.org/) tests as well as provides a number of commonly used front-end libraries located in `vendor` --the [Gumby SASS framework](http://gumbyframework.com/), [jQuery](http://jquery.com/), [Backbone](http://backbonejs.org/), [Lo-dash](http://lodash.com/), [GreenSock Animation Platform](http://www.greensock.com/), and [Modernizer](http://modernizr.com/).
 
 Installation
 -------------
